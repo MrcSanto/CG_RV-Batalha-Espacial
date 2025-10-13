@@ -1,0 +1,46 @@
+# Unity generated files
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Visual Studio / Rider / IDE generated files
+.vs/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# Unity Package Manager files
+/Packages/manifest.json.meta
+/Packages/packages-lock.json
+
+# Asset Store / Third Party packages
+# Add specific folders or files here if you want to exclude them
+# e.g., /Assets/Plugins/SomePlugin/
+# e.g., /Assets/ThirdParty/
+
+# macOS generated files
+.DS_Store
+
+# Windows generated files
+Thumbs.db
+
+# Other common files
+*.bak
+*.orig
+*.swp
+*.meta # IMPORTANT: Only ignore if you fully understand the implications for collaboration.
+      # Generally, .meta files should NOT be ignored as Unity needs them for asset linking.
