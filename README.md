@@ -18,9 +18,9 @@ Trabalho final para a disciplina de `Computação Gráfica | Realidade Virtual`
 
 ### Inimigos e Obstáculos
 - [x] Adicionar aviões inimigos - variar quantidade/velocidade
-- [ ] Adicionar asteroides
+- [x] Adicionar asteroides
 - [x] Fazer com que inimigos **atirem no jogador**
-- [ ] Fazer com que asteroides **colidam com o jogador**
+- [x] Fazer com que asteroides **colidam com o jogador**
 - [x] Ajustar colisões e destruição de objetos
 
 ### Mecânicas de Jogo

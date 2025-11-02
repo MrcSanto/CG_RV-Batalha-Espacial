@@ -2,36 +2,33 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    float speed;
+    public float speed = 8f;
+    private Vector2 direction;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Chamado logo após o Instantiate, pelo PlayerControl
+    public void SetDirection(Vector2 dir)
     {
-        speed = 8f;
+        direction = dir.normalized;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Vector2 position = transform.position;
+        // Move na direção definida
+        transform.Translate(direction * speed * Time.deltaTime, Space.World);
 
-        position = new Vector2 (position.x, position.y + speed * Time.deltaTime);
-
-        transform.position = position;
-
-        Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2(1, 1));
-
-        if (transform.position.y > max.y)
+        // Destroi se sair da tela
+        Vector2 screenPos = Camera.main.WorldToViewportPoint(transform.position);
+        if (screenPos.x < 0 || screenPos.x > 1 || screenPos.y < 0 || screenPos.y > 1)
         {
             Destroy(gameObject);
-        } 
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "EnemyShipTag")
+        if (col.CompareTag("EnemyShipTag") || col.CompareTag("AsteroidEntityTag"))
         {
-            Destroy (gameObject);
+            Destroy(gameObject);
         }
     }
 }

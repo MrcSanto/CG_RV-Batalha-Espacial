@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // Novo sistema de input
+using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -8,62 +8,70 @@ public class PlayerControl : MonoBehaviour
     public GameObject BulletPosition02;
     public GameObject ExplosionGO;
 
-    public float speed = 5f; // Velocidade do player
+    public float speed = 5f;
+    public float bulletSpeed = 10f;
 
-    private Vector2 movement; // Direção atual de movimento
+    private Vector2 movement;
+    private Vector2 shootDirection = Vector2.up; // sempre atira pra cima
 
     void Update()
     {
         var keyboard = Keyboard.current;
-        var mouse = Mouse.current;
-        if (keyboard == null || mouse == null) return;
+        if (keyboard == null) return;
 
         float x = 0f;
         float y = 0f;
 
-        // Leitura de teclas (novo Input System)
         if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed) x -= 1f;
         if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed) x += 1f;
         if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed) y += 1f;
         if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed) y -= 1f;
 
         movement = new Vector2(x, y).normalized;
+        Move(movement);
 
-        // Detecta se a tecla Space foi pressionada neste frame
-        if (keyboard.spaceKey.wasPressedThisFrame || mouse.leftButton.wasPressedThisFrame)
+        // Disparo (tecla espaço ou botão esquerdo)
+        if (keyboard.spaceKey.wasPressedThisFrame || Mouse.current?.leftButton.wasPressedThisFrame == true)
         {
-            Shoot();
+            ShootForward();
         }
 
-        Move(movement);
+        // 🔹 Sempre olhar para cima
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
-    void Shoot()
+    void ShootForward()
     {
-        GameObject bullet1 = Instantiate(PlayerBulletGO);
-        bullet1.transform.position = BulletPosition01.transform.position;
+        ShootBullet(BulletPosition01.transform.position, shootDirection);
+        ShootBullet(BulletPosition02.transform.position, shootDirection);
+    }
 
-        GameObject bullet2 = Instantiate(PlayerBulletGO);
-        bullet2.transform.position = BulletPosition02.transform.position;
+    void ShootBullet(Vector3 startPos, Vector2 direction)
+    {
+        GameObject bullet = Instantiate(PlayerBulletGO, startPos, Quaternion.identity);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = direction * bulletSpeed;
+        }
+
+        // 🔥 Sempre aponta pra cima
+        bullet.transform.rotation = Quaternion.identity;
     }
 
     void Move(Vector2 direction)
     {
-        // Limites da tela em coordenadas de mundo
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
-        // Ajuste para o tamanho do sprite (margens)
         max.x -= 0.225f;
         min.x += 0.225f;
         max.y -= 0.285f;
         min.y += 0.285f;
 
-        // Movimento
         Vector2 pos = transform.position;
         pos += direction * speed * Time.deltaTime;
 
-        // Impede de sair da tela
         pos.x = Mathf.Clamp(pos.x, min.x, max.x);
         pos.y = Mathf.Clamp(pos.y, min.y, max.y);
 
@@ -72,10 +80,14 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if ((col.tag == "EnemyShipTag") || (col.tag == "EnemyBulletTag"))
+        if (
+            col.CompareTag("EnemyShipTag") ||
+            col.CompareTag("EnemyBulletTag") ||
+            col.CompareTag("AsteroidEntityTag")
+        )
         {
             PlayExplosion();
-            Destroy (gameObject);
+            Destroy(gameObject);
         }
     }
 
