@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480797ec6ff08c7439e5bf199ea14d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyControl
-  ExplosionGO: {fileID: 6265208054002764338, guid: 128c7099247c38b4a96bd91900d9e20d, type: 3}
+  ExplosionGO: {fileID: 5503214184846155457, guid: af58196c0caf8f1448e8674ae82b1880, type: 3}
 --- !u!61 &938023088082755938
 BoxCollider2D:
   m_ObjectHideFlags: 0
