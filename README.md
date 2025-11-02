@@ -9,13 +9,15 @@ Trabalho final para a disciplina de `Computação Gráfica | Realidade Virtual`
 
 ### Estrutura Principal
 - [x] Criar base do jogo 2D no Unity
+- [ ] Definir área limitada de voo (mínimo 30 aviões enfileirados de comprimento)
 - [x] Implementar movimentação do jogador
+- [ ] Jogador aumentar a velocidade da nave usando a tecla `shift` 
 - [x] Adicionar sistema de disparo do jogador
 - [ ] Adicionar `linha de chegada`
 - [ ] Adicionar timer entre o inicio e fim da jornada do player 
 
 ### Inimigos e Obstáculos
-- [x] Adicionar aviões inimigos
+- [x] Adicionar aviões inimigos - variar quantidade/velocidade
 - [ ] Adicionar asteroides
 - [x] Fazer com que inimigos **atirem no jogador**
 - [ ] Fazer com que asteroides **colidam com o jogador**
@@ -46,4 +48,3 @@ Trabalho final para a disciplina de `Computação Gráfica | Realidade Virtual`
 
 - [ ] Achar assets mais `aesthetic` para o jogo
 - [ ] Adicionar velocimetro
-- [ ] Jogador aumentar a velocidade da nave usando a tecla `shift` 
