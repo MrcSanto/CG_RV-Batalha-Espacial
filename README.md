@@ -46,5 +46,5 @@ Trabalho final para a disciplina de `Computação Gráfica | Realidade Virtual`
 
 ### Opcional
 
-- [ ] Achar assets mais `aesthetic` para o jogo
+- [x] Achar assets mais `aesthetic` para o jogo
 - [ ] Adicionar velocimetro

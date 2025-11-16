@@ -55,7 +55,7 @@ public class PlayerControl : MonoBehaviour
             rb.linearVelocity = direction * bulletSpeed;
         }
 
-        // 🔥 Sempre aponta pra cima
+        // Sempre aponta pra cima
         bullet.transform.rotation = Quaternion.identity;
     }
 
