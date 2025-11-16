@@ -50,4 +50,6 @@ public class AsteroidControl : MonoBehaviour
 
         // explosion.transform.position = transform.position;
     }
+
+    //Opaa
 }
