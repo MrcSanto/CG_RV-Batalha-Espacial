@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     public GameObject asteroidSpawner;
     public GameObject GameOverGO;
     public GameObject scoreUITextGO;
+    public GameObject settingsButton;
+    public GameObject soundButton;
+    public GameObject musicButton;
+    public GameObject menuButton;
 
     public enum GameManagerState
     {
@@ -32,9 +36,13 @@ public class GameManager : MonoBehaviour
         {
             case GameManagerState.Opening:
                 GameOverGO.SetActive(false);
+                menuButton.SetActive(false);
 
                 playButton.SetActive(true);
                 exitButton.SetActive(true);
+                settingsButton.SetActive(true);
+                soundButton.SetActive(true);
+                musicButton.SetActive(true);
 
                 break;
             
@@ -43,7 +51,12 @@ public class GameManager : MonoBehaviour
 
                 playButton.SetActive(false);
                 exitButton.SetActive(false);
+                settingsButton.SetActive(false);
+                soundButton.SetActive(false);
+                musicButton.SetActive(false);
                 playerShip.GetComponent<PlayerControl>().Init();
+
+                menuButton.SetActive(true);
 
                 enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
                 asteroidSpawner.GetComponent<AsteroidSpawner>().ScheduleAsteroidSpawner();
