@@ -12,10 +12,7 @@ public class AsteroidSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Invoke ("SpawnAsteroid", maxSpawnRateInSeconds);
-
-        // vamos aumentar o spawn rate a cada 30 segundos
-        InvokeRepeating ("IncreaseSpawnRate", 0f, 30f);
+        
     }
 
     // Update is called once per frame
@@ -66,5 +63,19 @@ public class AsteroidSpawner : MonoBehaviour
         
         if (maxSpawnRateInSeconds == 1f)
             CancelInvoke("IncreaseSpawnRate");
+    }
+
+    public void UnscheduleAsteroidSpawner()
+    {
+        CancelInvoke ("SpawnAsteroid");
+        CancelInvoke ("IncreaseSpawnRate");
+    }
+
+    public void ScheduleAsteroidSpawner()
+    {
+        Invoke ("SpawnAsteroid", maxSpawnRateInSeconds);
+
+        // vamos aumentar o spawn rate a cada 30 segundos
+        InvokeRepeating ("IncreaseSpawnRate", 0f, 30f);
     }
 }

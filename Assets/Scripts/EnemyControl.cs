@@ -3,12 +3,15 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     public GameObject ExplosionGO;
+    public GameObject scoreUITextGO;
     float speed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         speed = 2f;
+
+        scoreUITextGO = GameObject.FindGameObjectWithTag("ScoreTextTag");
     }
 
     // Update is called once per frame
@@ -38,6 +41,9 @@ public class EnemyControl : MonoBehaviour
         if ((col.tag == "PlayerShipTag") || (col.tag == "PlayerBulletTag"))
         {
             PlayExplosion();
+
+            scoreUITextGO.GetComponent<ScoreManager>().Score += 100;
+
             Destroy (gameObject);
         }
     }

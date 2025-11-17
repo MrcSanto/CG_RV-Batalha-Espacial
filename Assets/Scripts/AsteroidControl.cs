@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AsteroidControl : MonoBehaviour
 {
+    public GameObject scoreUITextGO;
     public GameObject ExplosionGO;
     float speed;
 
@@ -9,6 +10,7 @@ public class AsteroidControl : MonoBehaviour
     void Start()
     {
         speed = 2f;
+        scoreUITextGO = GameObject.FindGameObjectWithTag("ScoreTextTag");
     }
 
     // Update is called once per frame
@@ -35,9 +37,10 @@ public class AsteroidControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if ((col.tag == "PlayerBulletTag"))
+        if (col.tag == "PlayerBulletTag")
         {
             PlayExplosion();
+            scoreUITextGO.GetComponent<ScoreManager>().Score += 100;
             Destroy (gameObject);
         }
     }
@@ -50,6 +53,4 @@ public class AsteroidControl : MonoBehaviour
 
         // explosion.transform.position = transform.position;
     }
-
-    //Opaa
 }

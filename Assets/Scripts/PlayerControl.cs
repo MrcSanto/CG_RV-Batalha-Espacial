@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
+    public GameObject GameManagerGO;
+
     public GameObject PlayerBulletGO;
     public GameObject BulletPosition01;
     public GameObject BulletPosition02;
@@ -13,6 +15,14 @@ public class PlayerControl : MonoBehaviour
 
     private Vector2 movement;
     private Vector2 shootDirection = Vector2.up; // sempre atira pra cima
+
+    public void Init()
+    {
+        gameObject.SetActive (true);
+
+        // resetando a posição do jogador na tela
+        transform.position = new Vector2 (0, 0);
+    }
 
     void Update()
     {
@@ -33,6 +43,7 @@ public class PlayerControl : MonoBehaviour
         // Disparo (tecla espaço ou botão esquerdo)
         if (keyboard.spaceKey.wasPressedThisFrame || Mouse.current?.leftButton.wasPressedThisFrame == true)
         {
+            GetComponent<AudioSource>().Play();
             ShootForward();
         }
 
@@ -87,7 +98,10 @@ public class PlayerControl : MonoBehaviour
         )
         {
             PlayExplosion();
-            Destroy(gameObject);
+
+            GameManagerGO.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.GameOver);
+
+            gameObject.SetActive(false);
         }
     }
 
