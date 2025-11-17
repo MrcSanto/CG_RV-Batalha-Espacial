@@ -33,11 +33,11 @@ Trabalho final para a disciplina de `Computação Gráfica | Realidade Virtual`
   - [ ] Exibir **tela de Game Over**
 
 ### Interface e Fluxo
-- [ ] Implementar menu inicial
-  - [ ] Botão “Iniciar Jogo”
-  - [ ] Botão “Ranking de jogadas”
+- [x] Implementar menu inicial
+  - [x] Botão “Iniciar Jogo”
+  - [x] Botão “Ranking de jogadas”
 - [ ] Implementar tela de ranking
-- [ ] Implementar tela de Game Over
+- [x] Implementar tela de Game Over
 
 ### Entrega e Demonstração
 - [ ] Subir o jogo (gerar build final)
