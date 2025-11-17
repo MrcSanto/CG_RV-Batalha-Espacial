@@ -19,6 +19,9 @@ public class PlayerControl : MonoBehaviour
     public void Init()
     {
         gameObject.SetActive (true);
+
+        // resetando a posição do jogador na tela
+        transform.position = new Vector2 (0, 0);
     }
 
     void Update()
@@ -40,6 +43,7 @@ public class PlayerControl : MonoBehaviour
         // Disparo (tecla espaço ou botão esquerdo)
         if (keyboard.spaceKey.wasPressedThisFrame || Mouse.current?.leftButton.wasPressedThisFrame == true)
         {
+            GetComponent<AudioSource>().Play();
             ShootForward();
         }
 

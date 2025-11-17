@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemySpawner;
     public GameObject asteroidSpawner;
     public GameObject GameOverGO;
+    public GameObject scoreUITextGO;
 
     public enum GameManagerState
     {
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
                 break;
             
             case GameManagerState.Gameplay:
+                scoreUITextGO.GetComponent<ScoreManager>().Score = 0;
+
                 playButton.SetActive(false);
                 exitButton.SetActive(false);
                 playerShip.GetComponent<PlayerControl>().Init();
