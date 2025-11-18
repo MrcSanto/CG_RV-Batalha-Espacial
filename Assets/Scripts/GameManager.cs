@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour
     public GameObject GameOverGO;
     public GameObject scoreUITextGO;
     public GameObject settingsButton;
-    public GameObject soundButton;
-    public GameObject musicButton;
     public GameObject menuButton;
+    public GameObject settingsMenu;
+
 
     public enum GameManagerState
     {
@@ -41,8 +41,6 @@ public class GameManager : MonoBehaviour
                 playButton.SetActive(true);
                 exitButton.SetActive(true);
                 settingsButton.SetActive(true);
-                soundButton.SetActive(true);
-                musicButton.SetActive(true);
 
                 break;
             
@@ -52,8 +50,6 @@ public class GameManager : MonoBehaviour
                 playButton.SetActive(false);
                 exitButton.SetActive(false);
                 settingsButton.SetActive(false);
-                soundButton.SetActive(false);
-                musicButton.SetActive(false);
                 playerShip.GetComponent<PlayerControl>().Init();
 
                 menuButton.SetActive(true);
@@ -90,5 +86,25 @@ public class GameManager : MonoBehaviour
     public void ChangeToOpeningState()
     {
         SetGameManagerState (GameManagerState.Opening);
+    }
+
+    public void OpenSettingsMenu()
+    {
+        settingsMenu.SetActive(true);
+    }
+
+    public void CloseSettingsMenu()
+    {
+        settingsMenu.SetActive(false);
+    }
+
+    public void SetNormalDifficulty()
+    {
+        DifficultyManager.CurrentDifficulty = DifficultyManager.Difficulty.Normal;
+    }
+
+    public void SetHardDifficulty()
+    {
+        DifficultyManager.CurrentDifficulty = DifficultyManager.Difficulty.Hard;
     }
 }

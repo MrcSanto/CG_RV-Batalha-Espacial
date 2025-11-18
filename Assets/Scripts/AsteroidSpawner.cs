@@ -73,9 +73,17 @@ public class AsteroidSpawner : MonoBehaviour
 
     public void ScheduleAsteroidSpawner()
     {
-        Invoke ("SpawnAsteroid", maxSpawnRateInSeconds);
+        if (DifficultyManager.CurrentDifficulty == DifficultyManager.Difficulty.Normal)
+        {
+            maxSpawnRateInSeconds = 4f;
+        }
+        else
+        {
+            maxSpawnRateInSeconds = 1.5f;
+        }
 
-        // vamos aumentar o spawn rate a cada 30 segundos
-        InvokeRepeating ("IncreaseSpawnRate", 0f, 30f);
+        Invoke("SpawnAsteroid", maxSpawnRateInSeconds);
+        InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
     }
+
 }

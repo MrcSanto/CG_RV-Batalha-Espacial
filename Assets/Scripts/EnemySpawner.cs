@@ -66,9 +66,18 @@ public class EnemySpawner : MonoBehaviour
 
     public void ScheduleEnemySpawner()
     {
-        Invoke ("SpawnEnemy", maxSpawnRateInSeconds);
+        // Ajusta o spawn rate conforme a dificuldade
+        if (DifficultyManager.CurrentDifficulty == DifficultyManager.Difficulty.Normal)
+        {
+            maxSpawnRateInSeconds = 5f;
+        }
+        else if (DifficultyManager.CurrentDifficulty == DifficultyManager.Difficulty.Hard)
+        {
+            maxSpawnRateInSeconds = 2f;
+        }
 
-        // vamos aumentar o spawn rate a cada 30 segundos
-        InvokeRepeating ("IncreaseSpawnRate", 0f, 30f);
+        Invoke("SpawnEnemy", maxSpawnRateInSeconds);
+        InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
     }
+
 }
