@@ -24,13 +24,13 @@ Trabalho final para a disciplina de `Computação Gráfica | Realidade Virtual`
 - [x] Ajustar colisões e destruição de objetos
 
 ### Mecânicas de Jogo
-- [ ] Implementar **níveis de dificuldade**
-  - [ ] Aumentar/diminuir **spawn rate** de inimigos e asteroides (minimo de naves = 5)
+- [x] Implementar **níveis de dificuldade**
+  - [x] Aumentar/diminuir **spawn rate** de inimigos e asteroides (minimo de naves = 5)
 
 
 - [ ] Jogo deve **acabar quando o jogador destruir o número mínimo de naves**
 - [ ] Caso o jogador **não chegue ao destino dentro do tempo** ou **seja destruido**, ele perde
-  - [ ] Exibir **tela de Game Over**
+  - [x] Exibir **tela de Game Over**
 
 ### Interface e Fluxo
 - [x] Implementar menu inicial
