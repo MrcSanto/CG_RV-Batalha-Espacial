@@ -41,7 +41,9 @@ public class PlayerControl : MonoBehaviour
         Move(movement);
 
         // Disparo (tecla espaço ou botão esquerdo)
-        if (keyboard.spaceKey.wasPressedThisFrame || Mouse.current?.leftButton.wasPressedThisFrame == true)
+        if (Time.timeScale != 0f && // verificando se estamos com o game pausado
+            (keyboard.spaceKey.wasPressedThisFrame || Mouse.current?.leftButton.wasPressedThisFrame == true)
+        )
         {
             GetComponent<AudioSource>().Play();
             ShootForward();
