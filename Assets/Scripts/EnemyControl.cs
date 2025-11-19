@@ -5,6 +5,7 @@ public class EnemyControl : MonoBehaviour
     public GameObject ExplosionGO;
     public GameObject scoreUITextGO;
     float speed;
+    private bool isDestroyed = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,11 +39,14 @@ public class EnemyControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (isDestroyed) return;
+
         if ((col.tag == "PlayerShipTag") || (col.tag == "PlayerBulletTag"))
         {
             PlayExplosion();
+            isDestroyed = true;
 
-            scoreUITextGO.GetComponent<ScoreManager>().Score += 100;
+            scoreUITextGO.GetComponent<ScoreManager>().Score += 50;
 
             Destroy (gameObject);
         }

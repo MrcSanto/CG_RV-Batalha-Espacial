@@ -5,6 +5,7 @@ public class AsteroidControl : MonoBehaviour
     public GameObject scoreUITextGO;
     public GameObject ExplosionGO;
     float speed;
+    private bool isDestroyed = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,11 +37,15 @@ public class AsteroidControl : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col)
-    {
+    {   
+        if (isDestroyed) return;
+
         if (col.tag == "PlayerBulletTag")
         {
             PlayExplosion();
-            scoreUITextGO.GetComponent<ScoreManager>().Score += 100;
+            isDestroyed = true;
+
+            scoreUITextGO.GetComponent<ScoreManager>().Score += 25;
             Destroy (gameObject);
         }
     }
