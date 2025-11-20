@@ -36,7 +36,7 @@ Trabalho final para a disciplina de `Computação Gráfica | Realidade Virtual`
 - [x] Implementar menu inicial
   - [x] Botão “Iniciar Jogo”
   - [x] Botão “Ranking de jogadas”
-- [ ] Implementar tela de ranking
+- [x] Implementar tela de ranking
 - [x] Implementar tela de Game Over
 
 ### Entrega e Demonstração

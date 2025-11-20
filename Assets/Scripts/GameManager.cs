@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public GameObject rankingMenu;
     public GameObject healthBar;
 
+    [Header("Ranking")]
+    public RankingManager rankingManager; // Arraste o RankingManager aqui
+
     public enum GameManagerState
     {
         Opening,
@@ -28,7 +31,6 @@ public class GameManager : MonoBehaviour
 
     GameManagerState GMState;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GMState = GameManagerState.Opening;   
@@ -38,12 +40,10 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // Se estiver jogando -> Pausa
             if (GMState == GameManagerState.Gameplay)
             {
                 PauseGame();
             }
-            // Se estiver no pause -> Retoma
             else if (GMState == GameManagerState.Pause)
             {
                 ResumeGame();
@@ -92,6 +92,9 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameManagerState.GameOver:
+                // SALVA O SCORE NO RANKING QUANDO O JOGO TERMINA
+                SaveCurrentScoreToRanking();
+
                 enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
                 asteroidSpawner.GetComponent<AsteroidSpawner>().UnscheduleAsteroidSpawner();
 
@@ -105,16 +108,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void SaveCurrentScoreToRanking()
+    {
+        if (rankingManager != null)
+        {
+            int currentScore = scoreUITextGO.GetComponent<ScoreManager>().Score;
+            rankingManager.AddScore(currentScore);
+        }
+        else
+        {
+            Debug.LogWarning("RankingManager não está atribuído no GameManager!");
+        }
+    }
+
     public void SetGameManagerState(GameManagerState state)
     {
         GMState = state;
-        UpdateGameManagerState ();
+        UpdateGameManagerState();
     }
 
     public void StartGamePlay()
     {
         GMState = GameManagerState.Gameplay;
-        UpdateGameManagerState ();
+        UpdateGameManagerState();
     }
 
     public void PauseGame()
@@ -145,14 +161,12 @@ public class GameManager : MonoBehaviour
         DestroyAllAsteroids();
         DestroyAllBullets();
 
-        // Reinicia spawners
         enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
         asteroidSpawner.GetComponent<AsteroidSpawner>().UnscheduleAsteroidSpawner();
 
         enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
         asteroidSpawner.GetComponent<AsteroidSpawner>().ScheduleAsteroidSpawner();
 
-        // Ícones da HUD
         pauseButton.SetActive(true);
         pauseMenu.SetActive(false);
         settingsButton.SetActive(false);
@@ -182,14 +196,19 @@ public class GameManager : MonoBehaviour
         GameOverGO.SetActive(false);
         pauseButton.SetActive(false);
 
-        // Volta para tela inicial
         GMState = GameManagerState.Opening;
         UpdateGameManagerState();
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+        Debug.Log("Fechando o jogo...");
+    }
+
     public void ChangeToOpeningState()
     {
-        SetGameManagerState (GameManagerState.Opening);
+        SetGameManagerState(GameManagerState.Opening);
     }
 
     public void OpenSettingsMenu()
@@ -242,5 +261,4 @@ public class GameManager : MonoBehaviour
         foreach (var bullet in GameObject.FindGameObjectsWithTag("PlayerBulletTag"))
             Destroy(bullet);
     }
-
 }
