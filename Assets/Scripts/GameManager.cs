@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     public GameObject pauseButton;
     public GameObject settingsMenu;
     public GameObject pauseMenu;
-
+    public GameObject rankingButton;
+    public GameObject rankingMenu;
+    public GameObject healthBar;
 
     public enum GameManagerState
     {
@@ -49,7 +51,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     void UpdateGameManagerState()
     {
         switch(GMState)
@@ -57,10 +58,12 @@ public class GameManager : MonoBehaviour
             case GameManagerState.Opening:
                 GameOverGO.SetActive(false);
                 pauseButton.SetActive(false);
+                healthBar.SetActive(false);
 
                 playButton.SetActive(true);
                 exitButton.SetActive(true);
                 settingsButton.SetActive(true);
+                rankingButton.SetActive(true);
 
                 break;
 
@@ -77,9 +80,11 @@ public class GameManager : MonoBehaviour
                 playButton.SetActive(false);
                 exitButton.SetActive(false);
                 settingsButton.SetActive(false);
+                rankingButton.SetActive(false);
                 playerShip.GetComponent<PlayerControl>().Init();
 
                 pauseButton.SetActive(true);
+                healthBar.SetActive(true);
 
                 enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
                 asteroidSpawner.GetComponent<AsteroidSpawner>().ScheduleAsteroidSpawner();
@@ -182,7 +187,6 @@ public class GameManager : MonoBehaviour
         UpdateGameManagerState();
     }
 
-
     public void ChangeToOpeningState()
     {
         SetGameManagerState (GameManagerState.Opening);
@@ -196,6 +200,16 @@ public class GameManager : MonoBehaviour
     public void CloseSettingsMenu()
     {
         settingsMenu.SetActive(false);
+    }
+
+    public void OpenRankingMenu()
+    {
+        rankingMenu.SetActive(true);
+    }
+
+    public void CloseRankingMenu()
+    {
+        rankingMenu.SetActive(false);
     }
 
     public void SetNormalDifficulty()

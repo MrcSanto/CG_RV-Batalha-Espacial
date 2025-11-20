@@ -40,7 +40,7 @@ public class AsteroidControl : MonoBehaviour
     {   
         if (isDestroyed) return;
 
-        if (col.tag == "PlayerBulletTag")
+        if ((col.tag == "PlayerShipTag") || (col.tag == "PlayerBulletTag"))
         {
             PlayExplosion();
             isDestroyed = true;

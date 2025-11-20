@@ -9,16 +9,31 @@ public class PlayerControl : MonoBehaviour
     public GameObject BulletPosition01;
     public GameObject BulletPosition02;
     public GameObject ExplosionGO;
+    public GameObject HealthBar;
+    private GameObject[] healthDots;
 
     public float speed = 5f;
     public float bulletSpeed = 10f;
+
+    const int MAX_LIVES = 3; // n max de vidas do jogador
+    int lives; // n de vidas atual do jogador
 
     private Vector2 movement;
     private Vector2 shootDirection = Vector2.up; // sempre atira pra cima
 
     public void Init()
     {
+        lives = MAX_LIVES;
         gameObject.SetActive (true);
+
+        healthDots = new GameObject[HealthBar.transform.childCount];
+
+        for (int i = 0; i < healthDots.Length; i++)
+            healthDots[i] = HealthBar.transform.GetChild(i).gameObject;
+        
+        // Ativa todas as barras (reset)
+        foreach (var bar in healthDots)
+            bar.SetActive(true);
 
         // resetando a posição do jogador na tela
         transform.position = new Vector2 (0, 0);
@@ -100,10 +115,17 @@ public class PlayerControl : MonoBehaviour
         )
         {
             PlayExplosion();
+            lives--;
+            if (lives >= 0 && lives < healthDots.Length)
+            {
+                healthDots[lives].SetActive(false);
+            }
 
-            GameManagerGO.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.GameOver);
-
-            gameObject.SetActive(false);
+            if (lives == 0)
+            {
+                GameManagerGO.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.GameOver);
+                gameObject.SetActive(false);
+            }
         }
     }
 
