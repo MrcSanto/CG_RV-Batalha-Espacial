@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject rankingButton;
     public GameObject rankingMenu;
     public GameObject healthBar;
+    public GameObject gameTitle;
 
     [Header("Ranking")]
     public RankingManager rankingManager; // Arraste o RankingManager aqui
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
                 exitButton.SetActive(true);
                 settingsButton.SetActive(true);
                 rankingButton.SetActive(true);
+                gameTitle.SetActive(true);
 
                 break;
 
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
                 exitButton.SetActive(false);
                 settingsButton.SetActive(false);
                 rankingButton.SetActive(false);
+                gameTitle.SetActive(false);
                 playerShip.GetComponent<PlayerControl>().Init();
 
                 pauseButton.SetActive(true);
