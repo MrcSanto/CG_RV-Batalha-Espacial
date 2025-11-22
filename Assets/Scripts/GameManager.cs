@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {   
     // referencia aos GOs
+    public GameTimer gameTimer;
+    public GameObject timerUI;
     public GameObject playButton;
     public GameObject exitButton;
     public GameObject playerShip;
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
 
                 enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
                 asteroidSpawner.GetComponent<AsteroidSpawner>().ScheduleAsteroidSpawner();
+                gameTimer.StartTimer();
 
                 break;
 
@@ -115,10 +118,12 @@ public class GameManager : MonoBehaviour
                 enemyCountUI.SetActive(false);
 
                 Invoke("ChangeToOpeningState", 4f);
+                gameTimer.StopTimer();
                 
                 break;
 
             case GameManagerState.Victory:
+                
                 SaveCurrentScoreToRanking();
                 EnemyControl.ResetEnemiesDestroyed(); 
 
@@ -132,6 +137,7 @@ public class GameManager : MonoBehaviour
                 enemyCountUI.SetActive(false);
 
                 Invoke("ChangeToOpeningState", 6f);
+                gameTimer.StopTimer();
                 
                 break;
         }
@@ -183,6 +189,9 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        gameTimer.ResetTimer();
+        gameTimer.StartTimer();
+
         scoreUITextGO.GetComponent<ScoreManager>().Score = 0;
         EnemyControl.ResetEnemiesDestroyed(); 
 
@@ -213,6 +222,8 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        gameTimer.ResetTimer();
+
         EnemyControl.ResetEnemiesDestroyed(); 
 
         Time.timeScale = 1f;

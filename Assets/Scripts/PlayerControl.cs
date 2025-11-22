@@ -53,7 +53,14 @@ public class PlayerControl : MonoBehaviour
         if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed) y -= 1f;
 
         movement = new Vector2(x, y).normalized;
-        Move(movement);
+        // Velocidade com Shift aumenta em (50%)
+        float currentSpeed = speed;
+        if (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed)
+        {
+            currentSpeed = speed * 1.5f;
+        }
+
+        Move(movement, currentSpeed);
 
         // Disparo (tecla espaço ou botão esquerdo)
         if (Time.timeScale != 0f && // verificando se estamos com o game pausado
@@ -87,7 +94,7 @@ public class PlayerControl : MonoBehaviour
         bullet.transform.rotation = Quaternion.identity;
     }
 
-    void Move(Vector2 direction)
+    void Move(Vector2 direction, float currentSpeed)
     {
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
@@ -98,7 +105,7 @@ public class PlayerControl : MonoBehaviour
         min.y += 0.285f;
 
         Vector2 pos = transform.position;
-        pos += direction * speed * Time.deltaTime;
+        pos += direction * currentSpeed * Time.deltaTime;
 
         pos.x = Mathf.Clamp(pos.x, min.x, max.x);
         pos.y = Mathf.Clamp(pos.y, min.y, max.y);
