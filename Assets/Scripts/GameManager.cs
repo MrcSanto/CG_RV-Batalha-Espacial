@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerShip;
     public GameObject enemySpawner;
     public GameObject asteroidSpawner;
+    public GameObject portalSpawner;
     public GameObject GameOverGO;
     public GameObject YouWinGO;
     public GameObject scoreUITextGO;
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
 
                 enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
                 asteroidSpawner.GetComponent<AsteroidSpawner>().ScheduleAsteroidSpawner();
+                portalSpawner.GetComponent<PortalSpawner>().SchedulePortalSpawner();
                 gameTimer.StartTimer();
 
                 break;
@@ -110,6 +112,7 @@ public class GameManager : MonoBehaviour
 
                 enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
                 asteroidSpawner.GetComponent<AsteroidSpawner>().UnscheduleAsteroidSpawner();
+                portalSpawner.GetComponent<PortalSpawner>().UnschedulePortalSpawner();
 
                 GameOverGO.SetActive(true);
                 pauseButton.SetActive(false);
@@ -204,9 +207,11 @@ public class GameManager : MonoBehaviour
 
         enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
         asteroidSpawner.GetComponent<AsteroidSpawner>().UnscheduleAsteroidSpawner();
+        portalSpawner.GetComponent<PortalSpawner>().UnschedulePortalSpawner();
 
         enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
         asteroidSpawner.GetComponent<AsteroidSpawner>().ScheduleAsteroidSpawner();
+        portalSpawner.GetComponent<PortalSpawner>().SchedulePortalSpawner();
 
         pauseButton.SetActive(true);
         pauseMenu.SetActive(false);
@@ -234,6 +239,7 @@ public class GameManager : MonoBehaviour
 
         enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
         asteroidSpawner.GetComponent<AsteroidSpawner>().UnscheduleAsteroidSpawner();
+        portalSpawner.GetComponent<PortalSpawner>().UnschedulePortalSpawner();
 
         playerShip.SetActive(false);
 
