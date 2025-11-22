@@ -15,6 +15,10 @@ public class PlayerControl : MonoBehaviour
     public float speed = 5f;
     public float bulletSpeed = 10f;
 
+    private float speedMultiplier = 1f;          // Multiplicador atual da velocidade
+    public float boostMultiplier = 1.6f;         // Velocidade máxima (+60%)
+    public float boostSpeed = 2f;               // Velocidade da transição (quanto maior, mais rápido aumenta/diminui)  
+
     const int MAX_LIVES = 3; // n max de vidas do jogador
     int lives; // n de vidas atual do jogador
 
@@ -53,12 +57,21 @@ public class PlayerControl : MonoBehaviour
         if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed) y -= 1f;
 
         movement = new Vector2(x, y).normalized;
-        // Velocidade com Shift aumenta em (50%)
-        float currentSpeed = speed;
-        if (keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed)
+        // BOOST GRADATIVO
+        bool isBoosting = keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed;
+
+        if (isBoosting)
         {
-            currentSpeed = speed * 1.5f;
+            speedMultiplier = Mathf.Lerp(speedMultiplier, boostMultiplier, Time.deltaTime * boostSpeed);
         }
+        else
+        {
+            speedMultiplier = Mathf.Lerp(speedMultiplier, 1f, Time.deltaTime * boostSpeed);
+        }
+
+        float currentSpeed = speed * speedMultiplier;
+
+        //FIM BOOST GRADATIVO
 
         Move(movement, currentSpeed);
 
