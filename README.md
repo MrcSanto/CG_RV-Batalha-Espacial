@@ -9,7 +9,7 @@ Trabalho final para a disciplina de `Computação Gráfica | Realidade Virtual`
 
 ### Estrutura Principal
 - [x] Criar base do jogo 2D no Unity
-- [ ] Definir área limitada de voo (mínimo 30 aviões enfileirados de comprimento)
+- [x] Definir área limitada de voo (mínimo 30 aviões enfileirados de comprimento)
 - [x] Implementar movimentação do jogador
 - [ ] Jogador aumentar a velocidade da nave usando a tecla `shift` 
 - [x] Adicionar sistema de disparo do jogador

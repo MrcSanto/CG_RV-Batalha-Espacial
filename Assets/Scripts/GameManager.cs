@@ -18,9 +18,10 @@ public class GameManager : MonoBehaviour
     public GameObject rankingMenu;
     public GameObject healthBar;
     public GameObject gameTitle;
+    public GameObject enemyCountUI;
 
     [Header("Ranking")]
-    public RankingManager rankingManager; // Arraste o RankingManager aqui
+    public RankingManager rankingManager;
 
     public enum GameManagerState
     {
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
                 GameOverGO.SetActive(false);
                 pauseButton.SetActive(false);
                 healthBar.SetActive(false);
+                enemyCountUI.SetActive(false);
 
                 playButton.SetActive(true);
                 exitButton.SetActive(true);
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
 
                 pauseButton.SetActive(true);
                 healthBar.SetActive(true);
+                enemyCountUI.SetActive(true);
 
                 enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
                 asteroidSpawner.GetComponent<AsteroidSpawner>().ScheduleAsteroidSpawner();
@@ -95,8 +98,8 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameManagerState.GameOver:
-                // SALVA O SCORE NO RANKING QUANDO O JOGO TERMINA
                 SaveCurrentScoreToRanking();
+                EnemyControl.ResetEnemiesDestroyed(); 
 
                 enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
                 asteroidSpawner.GetComponent<AsteroidSpawner>().UnscheduleAsteroidSpawner();
@@ -104,6 +107,7 @@ public class GameManager : MonoBehaviour
                 GameOverGO.SetActive(true);
                 pauseButton.SetActive(false);
                 pauseMenu.SetActive(false);
+                enemyCountUI.SetActive(false);
 
                 Invoke("ChangeToOpeningState", 8f);
                 
@@ -132,6 +136,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGamePlay()
     {
+        EnemyControl.ResetEnemiesDestroyed();
+
         GMState = GameManagerState.Gameplay;
         UpdateGameManagerState();
     }
@@ -156,6 +162,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         scoreUITextGO.GetComponent<ScoreManager>().Score = 0;
+        EnemyControl.ResetEnemiesDestroyed(); 
 
         playerShip.GetComponent<PlayerControl>().Init();
         playerShip.SetActive(true);
@@ -183,6 +190,8 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        EnemyControl.ResetEnemiesDestroyed(); 
+
         Time.timeScale = 1f;
 
         DestroyAllEnemies();

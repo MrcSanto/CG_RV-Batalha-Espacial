@@ -20,7 +20,7 @@ public class RankingManager : MonoBehaviour
         UpdateRankingUI();
     }
 
-    // Chame este método quando o jogo terminar para adicionar o score
+
     public void AddScore(int newScore)
     {
         topScores.Add(newScore);
