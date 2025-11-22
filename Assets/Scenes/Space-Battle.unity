@@ -5751,6 +5751,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c392897da435384695c33e47ebb737e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PortalSpawner
+  PortalGO: {fileID: 1595374862708137990, guid: 7c4a852c95c15ad4f825c03636eb0633, type: 3}
+  MIN_SPAWN_TIME: 45
+  MAX_SPAWN_TIME: 120
 --- !u!4 &1495598501
 Transform:
   m_ObjectHideFlags: 0
@@ -7056,6 +7059,7 @@ MonoBehaviour:
   playerShip: {fileID: 1517736086}
   enemySpawner: {fileID: 535267946}
   asteroidSpawner: {fileID: 675387225}
+  portalSpawner: {fileID: 1495598499}
   GameOverGO: {fileID: 1638580250}
   YouWinGO: {fileID: 1577468234}
   scoreUITextGO: {fileID: 431833910}
