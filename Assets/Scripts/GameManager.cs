@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject enemySpawner;
     public GameObject asteroidSpawner;
     public GameObject GameOverGO;
+    public GameObject YouWinGO;
     public GameObject scoreUITextGO;
     public GameObject settingsButton;
     public GameObject pauseButton;
@@ -28,7 +29,8 @@ public class GameManager : MonoBehaviour
         Opening,
         Gameplay,
         GameOver,
-        Pause    
+        Pause,
+        Victory
     }
 
     GameManagerState GMState;
@@ -58,7 +60,9 @@ public class GameManager : MonoBehaviour
         switch(GMState)
         {
             case GameManagerState.Opening:
+                playerShip.SetActive(false);
                 GameOverGO.SetActive(false);
+                YouWinGO.SetActive(false);
                 pauseButton.SetActive(false);
                 healthBar.SetActive(false);
                 enemyCountUI.SetActive(false);
@@ -106,10 +110,28 @@ public class GameManager : MonoBehaviour
 
                 GameOverGO.SetActive(true);
                 pauseButton.SetActive(false);
+                playerShip.SetActive(false);
                 pauseMenu.SetActive(false);
                 enemyCountUI.SetActive(false);
 
-                Invoke("ChangeToOpeningState", 8f);
+                Invoke("ChangeToOpeningState", 4f);
+                
+                break;
+
+            case GameManagerState.Victory:
+                SaveCurrentScoreToRanking();
+                EnemyControl.ResetEnemiesDestroyed(); 
+
+                enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
+                asteroidSpawner.GetComponent<AsteroidSpawner>().UnscheduleAsteroidSpawner();
+
+                YouWinGO.SetActive(true);
+                pauseButton.SetActive(false);
+                playerShip.SetActive(false);
+                pauseMenu.SetActive(false);
+                enemyCountUI.SetActive(false);
+
+                Invoke("ChangeToOpeningState", 6f);
                 
                 break;
         }
@@ -184,6 +206,7 @@ public class GameManager : MonoBehaviour
         exitButton.SetActive(false);
         settingsMenu.SetActive(false);
         GameOverGO.SetActive(false);
+        YouWinGO.SetActive(false);
 
         GMState = GameManagerState.Gameplay;
     }
@@ -206,6 +229,7 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         GameOverGO.SetActive(false);
+        YouWinGO.SetActive(false);
         pauseButton.SetActive(false);
 
         GMState = GameManagerState.Opening;

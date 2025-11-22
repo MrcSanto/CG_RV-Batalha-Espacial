@@ -2984,7 +2984,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1487140547796202655, guid: 906142a9c78bd62419de01717a97cfee, type: 3}
       propertyPath: speed
-      value: 0.1
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 1487140547796202655, guid: 906142a9c78bd62419de01717a97cfee, type: 3}
       propertyPath: isMoving
@@ -5937,6 +5937,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1577468236}
   - component: {fileID: 1577468235}
+  - component: {fileID: 1577468237}
   m_Layer: 0
   m_Name: GameWinGO
   m_TagString: Untagged
@@ -6017,6 +6018,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1577468237
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577468234}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -4930382600977413948, guid: fc5fa299ec0519a448fdd40a72463c05, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: c41a046a58958f2488a9d7863ef4e58a, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 50
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1598369802
 GameObject:
   m_ObjectHideFlags: 0
@@ -6194,7 +6292,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4930382600977413948, guid: fc5fa299ec0519a448fdd40a72463c05, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: d7a53c25af1ceff4387e1474cd60fa48, type: 3}
+  m_Resource: {fileID: 8300000, guid: dfa2ab43fc846b84783b1bc0af7a8476, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -6202,7 +6300,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 50
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -6758,6 +6856,7 @@ MonoBehaviour:
   enemySpawner: {fileID: 535267946}
   asteroidSpawner: {fileID: 675387225}
   GameOverGO: {fileID: 1638580250}
+  YouWinGO: {fileID: 1577468234}
   scoreUITextGO: {fileID: 431833910}
   settingsButton: {fileID: 617679553}
   pauseButton: {fileID: 86504703}
@@ -7341,7 +7440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 404a51d57215d814ba72cf0e05533fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxBackground
-  moveSpeed: -0.1
+  moveSpeed: -0.01
   manualHeight: 6.4
 --- !u!1 &1833267122
 GameObject:
@@ -7641,7 +7740,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1487140547796202655, guid: 906142a9c78bd62419de01717a97cfee, type: 3}
       propertyPath: speed
-      value: 0.5
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4287948185021135168, guid: 906142a9c78bd62419de01717a97cfee, type: 3}
       propertyPath: m_LocalScale.x
