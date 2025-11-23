@@ -11,10 +11,6 @@ public class SpeedometerNeedleUI : MonoBehaviour
     [SerializeField] private float minSpeed = 0f;
     [SerializeField] private float maxSpeed = 10f;
 
-    // Ângulos em graus para o mínimo e máximo (ajuste conforme o seu layout)
-    [SerializeField] private float minAngle = -90f;
-    [SerializeField] private float maxAngle = 90f;
-
     private void Update()
     {
         if (player == null || needle == null) return;

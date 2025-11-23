@@ -12,6 +12,7 @@ TagManager:
   - ScoreTextTag
   - EnemyDestroyedTextTag
   - GameManagerTag
+  - PortalTag
   layers:
   - Default
   - TransparentFX

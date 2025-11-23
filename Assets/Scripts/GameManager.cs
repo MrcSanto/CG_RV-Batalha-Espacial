@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject healthBar;
     public GameObject gameTitle;
     public GameObject enemyCountUI;
+    public GameObject speedometerUI;
 
     [Header("Ranking")]
     public RankingManager rankingManager;
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
                 pauseButton.SetActive(false);
                 healthBar.SetActive(false);
                 enemyCountUI.SetActive(false);
+                speedometerUI.SetActive(false);
 
                 playButton.SetActive(true);
                 exitButton.SetActive(true);
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
                 pauseButton.SetActive(true);
                 healthBar.SetActive(true);
                 enemyCountUI.SetActive(true);
+                speedometerUI.SetActive(true);
 
                 enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
                 asteroidSpawner.GetComponent<AsteroidSpawner>().ScheduleAsteroidSpawner();
@@ -122,6 +125,7 @@ public class GameManager : MonoBehaviour
 
                 Invoke("ChangeToOpeningState", 4f);
                 gameTimer.StopTimer();
+                DestroyAllPortals();
                 
                 break;
 
@@ -132,6 +136,7 @@ public class GameManager : MonoBehaviour
 
                 enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
                 asteroidSpawner.GetComponent<AsteroidSpawner>().UnscheduleAsteroidSpawner();
+                portalSpawner.GetComponent<PortalSpawner>().UnschedulePortalSpawner();
 
                 YouWinGO.SetActive(true);
                 pauseButton.SetActive(false);
@@ -141,6 +146,7 @@ public class GameManager : MonoBehaviour
 
                 Invoke("ChangeToOpeningState", 6f);
                 gameTimer.StopTimer();
+                // DestroyAllPortals();
                 
                 break;
         }
@@ -204,6 +210,7 @@ public class GameManager : MonoBehaviour
         DestroyAllEnemies();
         DestroyAllAsteroids();
         DestroyAllBullets();
+        DestroyAllPortals();
 
         enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
         asteroidSpawner.GetComponent<AsteroidSpawner>().UnscheduleAsteroidSpawner();
@@ -236,6 +243,7 @@ public class GameManager : MonoBehaviour
         DestroyAllEnemies();
         DestroyAllAsteroids();
         DestroyAllBullets();
+        DestroyAllPortals();
 
         enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
         asteroidSpawner.GetComponent<AsteroidSpawner>().UnscheduleAsteroidSpawner();
@@ -249,9 +257,17 @@ public class GameManager : MonoBehaviour
         YouWinGO.SetActive(false);
         pauseButton.SetActive(false);
 
+        // Reexibir UI principal
+        playButton.SetActive(true);
+        exitButton.SetActive(true);
+        settingsButton.SetActive(true);
+        rankingButton.SetActive(true);
+        gameTitle.SetActive(true);
+
         GMState = GameManagerState.Opening;
         UpdateGameManagerState();
     }
+
 
     public void ExitGame()
     {
@@ -313,5 +329,11 @@ public class GameManager : MonoBehaviour
 
         foreach (var bullet in GameObject.FindGameObjectsWithTag("PlayerBulletTag"))
             Destroy(bullet);
+    }
+
+    void DestroyAllPortals()
+    {
+        foreach (var portal in GameObject.FindGameObjectsWithTag("PortalTag"))
+            Destroy(portal);
     }
 }

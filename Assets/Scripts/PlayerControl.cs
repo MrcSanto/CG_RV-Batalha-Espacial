@@ -44,7 +44,7 @@ public class PlayerControl : MonoBehaviour
         // resetando a posição do jogador na tela
         transform.position = new Vector2 (0, 0);
 
-        CurrentSpeed = 0f;
+        CurrentSpeed = 20f;
     }
 
     void Update()

@@ -11,7 +11,6 @@ public class PortalControl : MonoBehaviour
 
     void Start()
     {
-        // Encontra o GameManager se não foi atribuído
         if (gameManagerGO == null)
         {
             gameManagerGO = GameObject.FindGameObjectWithTag("GameManagerTag");
