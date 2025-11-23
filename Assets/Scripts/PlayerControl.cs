@@ -25,6 +25,8 @@ public class PlayerControl : MonoBehaviour
     private Vector2 movement;
     private Vector2 shootDirection = Vector2.up; // sempre atira pra cima
 
+    public float CurrentSpeed { get; private set; } // Velocidade atual usada no movimento
+
     public void Init()
     {
         lives = MAX_LIVES;
@@ -41,6 +43,8 @@ public class PlayerControl : MonoBehaviour
 
         // resetando a posição do jogador na tela
         transform.position = new Vector2 (0, 0);
+
+        CurrentSpeed = 0f;
     }
 
     void Update()
@@ -70,6 +74,8 @@ public class PlayerControl : MonoBehaviour
         }
 
         float currentSpeed = speed * speedMultiplier;
+
+        CurrentSpeed = currentSpeed;
 
         //FIM BOOST GRADATIVO
 
