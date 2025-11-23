@@ -1,50 +1,92 @@
-# Space Battle Game
+# 🚀 Batalha Espacial Cabulosa
 
-Trabalho final para a disciplina de `Computação Gráfica | Realidade Virtual`
-
-> [!NOTE]
-> Trabalho em desenvolvimento
-
-## Checklist Desenvolvimento
-
-### Estrutura Principal
-- [x] Criar base do jogo 2D no Unity
-- [x] Definir área limitada de voo (mínimo 30 aviões enfileirados de comprimento)
-- [x] Implementar movimentação do jogador
-- [ ] Jogador aumentar a velocidade da nave usando a tecla `shift` 
-- [x] Adicionar sistema de disparo do jogador
-- [ ] Adicionar `linha de chegada`
-- [ ] Adicionar timer entre o inicio e fim da jornada do player 
-
-### Inimigos e Obstáculos
-- [x] Adicionar aviões inimigos - variar quantidade/velocidade
-- [x] Adicionar asteroides
-- [x] Fazer com que inimigos **atirem no jogador**
-- [x] Fazer com que asteroides **colidam com o jogador**
-- [x] Ajustar colisões e destruição de objetos
-
-### Mecânicas de Jogo
-- [x] Implementar **níveis de dificuldade**
-  - [x] Aumentar/diminuir **spawn rate** de inimigos e asteroides (minimo de naves = 5)
+Trabalho final para a disciplina de Computação Gráfica e Realidade Virtual, ministrada pelo Dr. Prof. Rafael Rieder.
 
 
-- [ ] Jogo deve **acabar quando o jogador destruir o número mínimo de naves**
-- [ ] Caso o jogador **não chegue ao destino dentro do tempo** ou **seja destruido**, ele perde
-  - [x] Exibir **tela de Game Over**
 
-### Interface e Fluxo
-- [x] Implementar menu inicial
-  - [x] Botão “Iniciar Jogo”
-  - [x] Botão “Ranking de jogadas”
-- [x] Implementar tela de ranking
-- [x] Implementar tela de Game Over
+## 👥 Integrantes do Grupo
+  - Igor Zanette
+  - Marco A. Santolin
+  - Marcos Paulo de Medeiros
 
-### Entrega e Demonstração
-- [ ] Subir o jogo (gerar build final)
-  - [ ] Adicionar **link para download**
-- [ ] Criar **vídeo demonstrativo** mostrando o gameplay
+## 🎮 Sobre o jogo
 
-### Opcional
+Batalha Espacial Cabulosa é um shoot 'em up 2D frenético onde você pilota uma nave espacial em uma missão perigosa através de um campo de asteroides e naves inimigas. 
 
-- [x] Achar assets mais `aesthetic` para o jogo
-- [ ] Adicionar velocimetro
+Seu objetivo é sobreviver, destruir inimigos e encontrar o portal de escape antes que o tempo acabe!
+
+![ezgif-52589e4e29399503](https://github.com/user-attachments/assets/46544f80-8131-4d10-ae23-46393ead2a8e)
+
+- 🌟 **Características Principais**:
+  - 🎯 **Sistema de Combate Dinâmico** - Inimigos que atiram de volta!
+  - ⏱️ **Corrida Contra o Tempo** - 3 minutos para completar sua missão.
+  - 🌀 **Portal de Escape** - Encontre e entre no portal para vencer.
+  - 💯 **Sistema de Pontuação** - Ganhe pontos destruindo inimigos e asteroides.
+  - 🏆 **Ranking de Jogadas** - Compete pelos melhores scores.
+  - 🎚️ **Dois Níveis de Dificuldade** - Normal e Hard.
+
+## 🕹️ Mecânicas do Jogo
+
+### 🎯 Objetivo
+Destrua no mínimo 5 naves inimigas e entre no portal de escape antes que o tempo acabe ou sua nave seja destruída!
+
+---
+
+### ⚡ Controles
+
+| Tecla                   | Ação                        |
+| ----------------------- | --------------------------- |
+| `W/A/S/D ou Setas`      | Movimentar a nave           |
+| `Espaço`                | Atirar                      |
+| `Shift`                 | Aumentar velocidade (boost) |
+| `ESC`                   | Pausar o jogo               |
+
+---
+
+### 🌀 Portal de Escape
+  - Spawna entre 1-2 minutos após o início da partida
+  - Quanto maior sua pontuação, maior a chance de aparecer mais cedo
+  - Aparece nas laterais da tela em posição aleatória
+  - Requisito mínimo: 5 inimigos destruídos para vitória
+  - Se entrar com menos de 5 inimigos → Game Over
+
+--- 
+
+### ⏰ Sistema de Tempo
+O timer visual indica o tempo restante com alertas progressivos:
+
+  - **0:00 - 2:00**: ⚪ Branco (Normal)
+  - **2:00 - 2:30**: 🔴 Vermelho (Aviso)
+  - **2:30 - 3:00**: 🔴⚪ Piscando (Crítico!)
+  - **3:00**: 💥 Game Over automático
+
+--- 
+  
+### 🎯 Sistema de Pontuação
+
+- **Nave Inimiga**: +50 pontos
+- **Asteroide**: +25 pontos
+- Contador de inimigos destruídos fica verde ao atingir 5+
+
+---
+
+### 💀 Condições de Derrota
+
+- Colidir com naves inimigas
+- Colidir com asteroides
+- Ser atingido por tiros inimigos
+- Tempo esgotar (3 minutos)
+- Entrar no portal com menos de 5 inimigos destruídos
+
+---
+
+### 🏆 Condição de Vitória
+- ✅ Destruir 5 ou mais naves inimigas
+- ✅ Encontrar e entrar no portal de escape **antes que o tempo acabe**
+
+
+## 🎬 Demonstração
+
+  - [📹 Clique aqui para assistir o vídeo demonstrativo](https://drive.google.com/drive/u/1/folders/1T4GDDxmljB-Ao2YvaejdNopgUALjWgnl)
+
+Veja o gameplay completo, todas as mecânicas em ação e descubra estratégias para vencer!
