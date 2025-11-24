@@ -15,9 +15,14 @@ Seu objetivo é sobreviver, destruir inimigos e encontrar o portal de escape ant
 
 ## 🎬 Demonstração
 
-  - [📹 Clique aqui para assistir o vídeo demonstrativo](https://drive.google.com/drive/u/1/folders/1T4GDDxmljB-Ao2YvaejdNopgUALjWgnl)
+  - [📹 Clique aqui para assistir o vídeo demonstrativo](https://drive.google.com/file/d/16Q_1XnkMDp-SldTJdLfsQdQd7iR5EnDK/view)
 
 Veja o gameplay completo, todas as mecânicas em ação e descubra estratégias para vencer!
+
+## ⬇️ Download
+
+  - [📹 Clique aqui para realizar o download do build final do jogo!](https://drive.google.com/drive/u/1/folders/1mC0Vbrfqeyr64thEGn8u5a0h8Fw12Ob_)
+
 
 --- 
 
